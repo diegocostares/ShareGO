@@ -8,7 +8,7 @@
   <br>
 </p>
 
-## Integrantes
+## Contributors
 
 | Nombre              | Email             | Github                                             |
 | ------------------- | ----------------- | -------------------------------------------------- |
@@ -18,32 +18,22 @@
 
 ## Project
 
-[link](https://github.com/IIC2143/grupo-54/projects/1)
+Project created to manage collaborative travels to the university.
 
-## Deploy :video_game:
+## Deploy locally :video_game:
 
 ```shell
-sudo apt install imagemagick
 bundle install
-rake yarn:install
-rake db:create
-rake db:migrate
-rake db:seed
+rails yarn:install
+rails db:create
+rails db:migrate
+rails db:seed
 ```
 
-# Deployear cambios a Heroku
+## Kanban (Github Project)
 
-```shell
-git push heroku main
-```
-
-Si es necesario aplicar las migraciones y seeds:
-
-```shell
-heroku run rake db:migrate
-heroku run rake db:seed
-```
+[link](https://github.com/IIC2143/grupo-54/projects/1)
 
 # Heroku
 
-La app está disponible en [Heroku](https://sharego-54.herokuapp.com/).
+The app is available in [Heroku](https://sharego-54.herokuapp.com/).
