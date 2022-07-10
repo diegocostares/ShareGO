@@ -1,0 +1,118 @@
+<h2><%= t(".title") %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="media">
+    <%= image_tag user_avatar(resource, 100), class: "media-left" %>
+    <div class="file is-boxed media-content">
+    </div>
+  </div>
+
+  <div class= "file is-centered is-normal is-primary">
+    <label class="file-label"><br>
+        <%= f.file_field :profile_picture, class: "file-input" %>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fa fa-upload"></i>
+          </span>
+          <%= f.label :profile_picture, class: "file-label" %><br />
+        </span>
+      </label>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <div class="control has-icons-left">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "input", type: "text", placeholder: "Nombre" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <div class="control has-icons-left">
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "input", type: "text", placeholder: "Apellido" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <div class="control has-icons-left">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", type: "email" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :bio %><br />
+    <div class="control has-icons-left">
+      <%= f.text_field :bio, autofocus: true, autocomplete: "bio", class: "input", type: "text", placeholder: "Tu biografía" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-paragraph"></i>
+      </span>
+    </div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>)</em>
+    <% end %><br />
+    <div class="control has-icons-left">
+      <%= f.password_field :password, autocomplete: "new-password", class: "input", type: "password", placeholder: "********"%>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <div class="control has-icons-left">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", type: "password", placeholder: "********"%>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <br>
+  <%= f.label :current_password %><br />
+  <div class="field has-addons">
+  <div class="control is-expanded">
+    <div class="control has-icons-left">
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "input ", type: "password", placeholder: "********"%>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+  </div>
+  <div class="control"></div>
+      <%= f.submit t(".update"), class: "button is-primary" %>
+  </div>
+</div>
+
+
+<% end %>
+
+<!--
+<br><br>
+hr>
+<div class="actions has-text-centered">
+  <%= button_to t(".cancel_my_account"), registration_path(resource_name), class: "button is-danger", data: { confirm: t("general.destroy_account") }, method: :delete %>
+</div-->
+<br>

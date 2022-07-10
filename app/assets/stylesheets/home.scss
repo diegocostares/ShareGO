@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2? family=Poppins:300, 400, 500 600, 700, 800,900& display=swap');
+:root {
+    --cafe: #635540;
+    --verde0: #b4d5c1;
+    --verde1: #307f59;
+    --verde2: rgb(153, 206, 103);
+    --azul: rgba(161, 213, 195, 1);
+}
+
+
+/* ACA SE DEFINE EL EFECTO PARALAX */
+
+section.paralax {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.paralax::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, rgba(198, 231, 200, 1), transparent);
+    z-index: 12;
+}
+
+section.paralax img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+section.paralax img#calle {
+    z-index: 10;
+}
+
+section.paralax img#roca {
+    z-index: 9;
+}
+
+#text {
+    left: -160px;
+    position: absolute;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 8;
+    transform: translateY(50px);
+}
+
+#btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 40px;
+    background: #fff;
+    color: #000;
+    font-size: 1.5vw;
+    z-index: 9;
+    opacity: 0.8;
+    transform: translateY(-30px);
+}
+
+.sec {
+    position: relative;
+    padding: 100px;
+    z-index: 1;
+    /* background: #fff; */
+}
+
+.sec::after {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(198, 231, 200, 1), transparent);
+}
+
+.sec h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.sec p {
+    font-size: 20px;
+    font-weight: 300;
+    color: #000;
+    line-height: 1.2;
+}

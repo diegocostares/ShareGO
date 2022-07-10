@@ -1,0 +1,16 @@
+<% flash.each do |name, data|%>
+    <%= content_tag :div, class: "notification is-success is-light center-notification", :"data-closable" => "data-closable"  do -%>
+    <button class="delete"></button> 
+    <%= data %>
+    <%end%>
+<% end %>
+
+<!-- Creamos un script para que al apretar el boton se cierre la ventana de notification--->
+<script>
+    document.querySelectorAll(".notification .delete").forEach(function ($deleteButton) {
+        const parentNotification = $deleteButton.parentNode;
+        $deleteButton.addEventListener('click', function () {
+            parentNotification.parentNode.removeChild(parentNotification);
+        });
+    });
+</script>

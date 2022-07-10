@@ -1,0 +1,100 @@
+<%# Verificamos que la ruta actual sea igual a la de inicio %>
+<% if (request.path == "/" || request.path == "/en" || request.path == "/es") && !user_signed_in? %>
+<nav class="navbar is-fixed-top headermovil" id="headerabajo" role="navigation" aria-label="main navigation">
+<% else %>
+<nav class="navbar is-fixed-top headersticky" id="headerabajo" role="navigation" aria-label="main navigation">
+<% end %>
+
+  <!-- Nabvar header -->
+  <header class="navbar-header navbar-style" id="navbar-header">
+    <a href="/" class="brand-link is-size-3">
+      <%= image_tag("logo2.png", :alt => "ShareGO", :style => "height: 65px; width: 65px;") %>
+    </a>
+    <button class="navbar-menu-mobile open is-size-3 is-hidden-desktop" id="navbar-menu-mobile">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+  </header>
+  <!-- Navbar container -->
+
+  <ul class="navbar-container" id="navbar-container" >
+    <div class="navbar-end">
+      <%# ------ HOME -------- %>
+      <a class="navbar-item" href= <%= root_path%> >
+        <span class="icon is-small mr-2"><i class="fa fa-home"></i> </span>
+        <span><%= t('header.home') %></span>
+      </a>
+      <%# ------ IDIOMA -------- %>
+      <%# ------ ENGLISH  -------- %>
+      <%= link_to root_path(locale: :en), :class => "navbar-item" do %>
+          <span class= "icon is-small mr-2"><i class="fa fa-language"></i></span>
+          <span><%= t('header.english') %></span>
+      <%end%>
+      <%# ------ ESPAÑOL ------ %>
+      <%= link_to root_path(locale: :es), :class => "navbar-item" do %>
+          <span class= "icon is-small mr-2"><i class="fa fa-language"></i></span>
+          <span><%= t('header.spanish') %></span>
+      <%end%>
+
+      <%# ------ ESTA REGISTRADO? -------- %>
+      <% if user_signed_in? %>
+        <%# ------ CHATS -------- %>
+        <a class="navbar-item" href= <%= chats_path%> >
+          <span class="icon is-small mr-2"><i class="fa fa-comment"></i> </span>
+          <span><%= t('header.chat') %></span>
+        </a>
+        <%# ------ CONFIGURACION -------- %>
+        <a class="navbar-item" href= <%= user_path(current_user) %> >
+          <span class="icon is-small mr-2"><i class="fa fa-user-circle-o"></i> </span>
+          <span><%= t('header.profile') %></span>
+        </a>
+        <%# ------ LOGOUT -------- %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to destroy_user_session_path,method: :delete, :class => "button is-light" do %>
+              <span class= "icon is-small mr-2"><i class="fa fa-sign-out"></i></span>
+              <span><%= t('header.logout') %></span>
+            <%end%>
+      <%# ------ SI NO ESTA REGISTRADO -------- %>
+      <% else %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to t('header.new'), new_user_registration_path, class: 'button is-primary' %>
+            <%= link_to t('header.login'), new_user_session_path,class: "button is-light" %>
+      <%end%>
+        </div>
+      </div>
+
+    </div>
+  </ul>
+</nav>
+
+
+<script type="text/javascript">
+const showMenu = (toggleId, navId) => {
+    const toggle = document.getElementById(toggleId),
+          nav = document.getElementById(navId)
+    if(toggle && nav){
+        toggle.addEventListener('click',()=>{
+            nav.classList.toggle('show')
+        })
+
+        nav.addEventListener('click', e => {
+            let el = e.target
+            if(el.tagName == 'A'){
+                nav.classList.toggle('show')
+            }
+        })
+    }
+
+}
+
+showMenu('navbar-menu-mobile','navbar-container')
+</script>
+
+<datalist id="campus">
+  <option value="San Joaquín">
+  <option value="Casa Central">
+  <option value="Lo Contador">
+  <option value="Oriente">
+  <option value="Villarica">
+</datalist>

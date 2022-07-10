@@ -1,0 +1,78 @@
+<h2><%= t(".sign_up")%></h2>
+<hr>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="file is-boxed media-content is-primary is-centered">
+    <label class="file-label">
+      <%= f.file_field :profile_picture, class: "file-input" %>
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fa fa-upload"></i>
+        </span>
+        <%= f.label :profile_picture, class: "file-label" %><br />
+      </span>
+    </label>
+  </div>
+
+  </br>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <div class="control has-icons-left">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "input", type: "text", placeholder: "Nombre" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <div class="control has-icons-left">
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "input", type: "text", placeholder: "Apellido" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <div class="control has-icons-left">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", type: "email", placeholder: "correo@gmail.com" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <div class="control has-icons-left">
+      <%= f.password_field :password, autocomplete: "new-password", class: "input", type: "password", placeholder: "********"%>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <div class="control has-icons-left">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", type: "password", placeholder: "********"%>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class= "has-text-centered">
+    <div class="actions">
+      <%= f.submit t(".sign_up"), class: "button is-primary"%>
+    </div>
+  </div>
+<% end %>

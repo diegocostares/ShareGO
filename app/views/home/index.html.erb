@@ -1,0 +1,273 @@
+<% if !current_user %>
+    <div class="cuerpo-container "> <!--w-75 bg-primary mt-5 rounded shadow-->
+        <section class="paralax">
+            <%= image_tag("capas_fondo/0sky2.png", :id => "skys") %>
+            <!-- <img src="img/1sombra2.png" id="sombras"> -->
+            <%= image_tag("capas_fondo/1sombra2.png", :id => "sombras")%>
+            <%= image_tag("capas_fondo/2edificios2.png", :id => "edicios")%>
+            <h2 id="text"><%= t('general.ShareGO') %></h2>
+
+            <a href="<%=new_user_registration_path%>" id="btn"> <%= t('home.explore') %></a>
+            <%= image_tag("capas_fondo/3roca2.png", :id => "roca")%>
+
+            <%= image_tag("capas_fondo/4calle2.png", :id => "calle")%>
+
+        </section>
+        <div class="sec" id="sec">
+            <h2><%= t('home.title') %></h2>
+            <p><%= t('home.descr') %></p>
+        </div>
+
+
+        <!-- SCRIPT MOVIMIENTO INICIO -->
+        <script>
+            let skys = document.getElementById('skys');
+            let sombras = document.getElementById('sombras');
+            let edicios = document.getElementById('edicios');
+            let text = document.getElementById('text');
+            let roca = document.getElementById('roca');
+            let calle = document.getElementById('calle');
+            let iluminacion = document.getElementById('iluminacion');
+            var header = document.getElementById('headerabajo');
+
+            window.addEventListener('scroll', function(){
+                let scroll = window.scrollY;
+                header.classList.toggle('headerabajo', scroll > 0);
+                skys.style.left = -scroll/2 + 'px';
+                sombras.style.left = scroll/4 + 'px';
+                edicios.style.left = scroll/10 + 'px';
+                edicios.style.top = scroll/6 + 'px';
+                text.style.marginLeft = scroll * 5 + 'px';
+                roca.style.top = scroll/6 + 'px';
+                roca.style.left = scroll/15 + 'px';
+                calle.style.top = scroll*0 + 'px';
+                iluminacion.style.top = scroll/4 + 'px';
+
+            });
+        </script>
+
+    </div>
+
+
+
+<!-- HOME CON LOGIN VALIDADO-->
+<% else %>
+    <!-- Load user with each publication -->
+    <% enriched_publications = [] %>
+    <% @publications.each do |publication| %>
+      <% enriched_publications << publication.attributes.merge({user: User.find_by(id: publication.user_id)})%>
+    <% end %>
+    <%= content_tag(:div, id: "temp-data", data: {
+      publications: enriched_publications,
+      current_user: current_user,
+      translations: {
+        "general.title" => t('general.title'),
+        "general.author" => t('general.author'),
+        "general.options" => t('general.options'),
+        "general.show" => t('general.show'),
+        "general.delete" => t('general.delete'),
+        "nothing.travels" => t('nothing.travels'),
+    }}) do%>
+    <% end %>
+    <br><br><br><br>
+    <section class="hero is-fillheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-responsive is-centered">
+            <div class="column is-four-fifths is-offset">
+              <div class="box" action = "">
+                <div class="content">
+                      <!-- SI ES ADMIN-->
+                      <% if current_user.admin%>
+                        <h1><%= t('admin.travels') %></h1>
+                      <% else %>
+                        <h1><%= t('general.travels')%></h1>
+                      <% end %>
+                      <div class="select">
+                      <select name='filtro' id="campus-filter">
+                        <option value='all'><%= t("general.campus_select") %></option>
+                        <option value='San Joaquín'>San Joaquín</option>
+                        <option value='Casa Central'>Casa Central</option>
+                        <option value='Lo Contador'>Lo Contador</option>
+                        <option value='Oriente'>Oriente</option>
+                        <option value='Villarica'>Villarica</option>
+                      </select>
+                      </div>
+                      <br>
+                      <br>
+                    <div class="table-container">
+                    <table class = "table" id="publications-table">
+                        <thead>
+                          <tr>
+                            <th><%= t('general.title') %></th>
+                            <th><%= t('general.author') %></th>
+                            <th><%= t('general.journey') %></th>
+                            <th><%= t('general.options') %></th>
+                          </tr>
+                        </thead>
+                        <% @a_publication = false %>
+                        <% @publications.each do |publication| %>
+                        <% if publication.seats_left  > 0 %>
+                        <tr>
+                            <% @a_publication = true%>
+                            <td><%= link_to publication.title, publication_path(publication) %></td>
+                            <td><%= link_to "#{publication.user.full_name}", user_path(publication.user) %></td>
+                            <td><%= publication.origin %> → <%= publication.destination %> </td>
+                            <td><%= link_to t('general.show'), publication_path(publication), class: "button is-small m-1 is-info is-light is-responsive m-1" %></td>
+                            <!-- SI ES ADMIN-->
+                            <% if current_user.admin %>
+                              <td><%= link_to t('general.delete'), publication, method: :delete, data: { confirm: t('publication.delete')}, class: "button is-danger is-light is-responsive is-small m-1"%></td>
+                            <% end %>
+                        </tr>
+                        <% end %>
+                        <% end %>
+                      </table>
+                      </div>
+                    <!-- SI NO HAY Viajes-->
+                    <% if !@a_publication %>
+                        <h3><%= t('nothing.travels') %></h3><br>
+                    <% end %>
+                    <%= link_to t('publication.create_travel'), new_publication_path, class: "button is-small m-1 is-light is-info" %>
+                    <%= link_to t('publication.my_travels'), publications_path, class: "button is-small m-1 is-info is-light" %>
+                    <%= link_to t('request.show_requests'), requests_path, class: "button is-small m-1 is-info is-light" %>
+                    <%= link_to t('chat.my_chats'), chats_path, class: "button is-small m-1 is-info is-light" %>
+                    <% if current_user.admin %>
+                      <%= link_to t('admin.users_list'), users_path, class: "button is-small m-1 is-light is-info" %>
+                    <% end %>
+                    <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+
+    <br><br><br><br><br>
+
+    <script>
+    // Slugify tolerant of accent marks using unicode
+    function slugify(text) {
+      // Return empty string if text is null or undefined
+      if (text == null || text == undefined) {
+        return '';
+      }
+      return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+    }
+
+
+    const data = document.querySelector("#temp-data").dataset;
+    const publications = JSON.parse(data.publications);
+    const current_user = JSON.parse(data.currentUser);
+    const translations = JSON.parse(data.translations);
+    const publications_table = document.querySelector("#publications-table");
+
+    function t(key) {
+      return translations[key];
+    }
+
+    // Filter publications according to the campus in the <select>
+    const filter = document.querySelector('#campus-filter');
+    filter.addEventListener('change', (e) => {
+        console.debug("Changed publication filter to: ", e.target.value);
+        const campus = slugify(e.target.value);
+        let filtered_publications = [];
+        if (campus == "all") {
+          filteredPublications = publications
+        } else {
+          filteredPublications = publications.filter(p => slugify(p.origin).includes(campus) || slugify(p.destination).includes(campus));
+        }
+        console.debug("Filtered publications: ", filteredPublications);
+        // Clean table
+        publications_table.innerHTML = "";
+        // If there are no publications, show a message
+        if (filteredPublications.length == 0) {
+          publications_table.innerHTML = "<tr><td colspan='4'><h3>" + t("nothing.travels") + "</h3></td></tr>";
+        } else {
+        // Add headers: title, author, options
+        const headers = ["title", "author", "journey", "options"];
+        for (const header of headers) {
+            const th = document.createElement("th");
+
+            // Agu si lees esto perdon por romper tu codigo.
+            if (t(`general.${header}`) == undefined && (window.location.pathname.endsWith("/es") || window.location.pathname.endsWith("")) ) {
+              th.innerHTML = "Trayecto";
+            }
+            else if (t(`general.${header}`) == undefined && (window.location.pathname.endsWith("/en")) ) {
+              th.innerHTML = "Journey";
+            }
+            else {
+              th.innerText = t(`general.${header}`);
+            }
+            publications_table.appendChild(th);
+        };
+        // Add rows
+        for (const publication of filteredPublications) {
+            const tr = document.createElement("tr");
+            // Add title
+            const td = document.createElement("td");
+            // Publication title is a link
+            const a = document.createElement("a");
+            a.href = "/publications/" + publication.id;
+            a.innerText = publication.title;
+            td.appendChild(a);
+            tr.appendChild(td);
+            
+            // Add author
+            const td2 = document.createElement("td");
+            // Create link to author's page
+            const author_link = document.createElement("a");
+            author_link.href = "/users/" + publication.user.id;
+            author_link.innerText = publication.user.first_name + " " + publication.user.last_name;
+            td2.appendChild(author_link);
+            tr.appendChild(td2);
+            
+            // Add journey
+            const td3 = document.createElement("td");
+            td3.innerText = publication.origin + " → " + publication.destination;
+            tr.appendChild(td3);
+
+            // Add options
+            const td4 = document.createElement("td");
+            const showButton = document.createElement("button");
+            showButton.innerText = t("general.show");
+            showButton.classList.add("button");
+            showButton.classList.add("is-small");
+            showButton.classList.add("is-info");
+            showButton.classList.add("is-light");
+            showButton.classList.add("is-responsive");
+            showButton.classList.add("mr-3");
+            showButton.addEventListener("click", () => {
+                window.location.href = `/publications/${publication.id}`;
+            });
+            td4.appendChild(showButton);
+            // Add delete button is user is admin
+            if (current_user.admin) {
+                const td4 = document.createElement("td");
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = t("general.delete");
+                deleteButton.classList.add("button");
+                deleteButton.classList.add("is-danger");
+                deleteButton.classList.add("is-light");
+                deleteButton.classList.add("is-small");
+                deleteButton.classList.add("is-responsive");
+                deleteButton.addEventListener("click", () => {
+                    window.location.href = `/publications/${publication.id}`;
+                });
+                td4.appendChild(deleteButton);
+            }
+            tr.appendChild(td4);
+            publications_table.appendChild(tr);
+        };
+        }
+
+    });
+
+    </script>
+
+<% end %>

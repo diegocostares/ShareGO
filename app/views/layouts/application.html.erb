@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Grupo 54">
+    <title>ShareGO - Viajes UC</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="description" content="ShareGO te permite ofrecer y encontrar viajes compartidos a y desde los distintos campus de la UC. ">
+    <link rel="shortcut icon" href="/logo1.png" >
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <%= render 'layouts/header' %>
+
+    <!-- MENSAJE FLASH -->
+    <%= render 'layouts/notification_flash' %>
+
+    <!-- CONTENIDO -->
+    <%= yield %>
+
+  <!-- FOOTER -->
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

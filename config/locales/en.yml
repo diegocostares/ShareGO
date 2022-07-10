@@ -1,0 +1,348 @@
+en:
+  general:
+    ShareGO: ShareGO
+    title: Title
+    author: Autor
+    user: User
+    users: 👥 Users
+    content: Content
+    options: Options
+    travels: 📌 Travels
+    publication: Publication
+    show: Show
+    edit: Edit
+    delete: Delete
+    create: Create
+    cancel: Cancel
+    campus: Campus
+    back: Back
+    email: Email
+    biography: Biography
+    default_biography: This user doesn't have a bio yet. 😔
+    rate: Rate
+    rate_done: Rated
+    filter: Filter
+    all: All campuses
+    campus_select: Select a campus
+    score: Score
+    points: GoCoins
+    status: Status
+    name: Name
+    destroy_account: Are you sure to delete your account?
+    journey: Journey
+
+  home:
+    explore: Register now
+    title: Welcome to ShareGO!
+    descr: Welcome to ShareGO, your place to plan your travel between the university and your home. Here you can search and offer services to drive your classmates to any campus in a completely safe way. What are you waiting for to try it?
+
+  user:
+    something: a
+    points_info: Earn coins every time your rides are rated or you rate one.
+
+  publication:
+    my_travels: 🚗 My Travels
+    create_travel: 📅 Create Travel
+    new_travel: 📅 New Travel
+    edit: 📝 Edit publication
+    delete: Do you want to delete this post?
+    session: You must login to watch the publications.
+    day: Day
+    departure_time: Departure Time
+    seats_leaf: Seats leaf
+    request: Request Travel
+    all_travels: See all travels
+    direction: 📌 Direction
+    origin: 📌 Origin
+    destination: Destination
+    person_limit: Person Limit
+    users_at: Users in the travel
+    my_requested_travels: 🚙 Travels I'm participating in
+    place_hint: "💡 Hint: Start typing the name of a campus and use autocomplete to fill."
+    time_hint: "💡 Hint: Time is written in the 12:59 PM format."
+    leave: Leave the Travel
+    out_confirm: Are you sure to get out of the trip?
+
+  request:
+    my_publications: 📬 Requests to my publications
+    my_own_requests: 📬 My requests
+    show_requests: 📬 Show requests
+    send: Request sent
+    approve: Approve
+    approved: ✅ Approved
+    approved_long: ✅ Your request was approved.
+    reject: Reject
+    rejected: ❌ Rejected
+    rejected_long: ❌ Your request was rejected.
+    pending: ⏰ Pending
+    pending_long: ⏰ Your request is pending approval or rejection by the user.
+    session: You must login to watch the requests
+    cancel: Cancel requests
+    cancel_info: Are you sure you want to cancel your requests?
+
+  chat:
+    my_chats: ✉️ My chats
+    send_message: Send message
+    send: Send
+    chat_name: "%{chat.publication.title} chat"
+    not_in: No are not part of this chat.
+
+  admin:
+    travels: 📌 Travels (admin mode)
+    users_list: 👥 List of users
+
+  nothing:
+    points: You have to have at least 5 GoCoins to get an emblem.
+    travels: There's no travels at the moment
+    publications: You have no publications yet.
+    requests: You have no requests at the moment.
+    your_requests: You haven't made any request yet, try seeing some publications!
+    users: There's no users at the moment.
+    chats: You have no chats at the moment, you first need to get approved on one of the trips 🧐.
+    score: This user has no ratings yet
+
+  footer:
+    about_us: "A project by: "
+    university: University
+    university_name: Pontifical Catholic University of Chile
+    love: Made with ❤️ by students, for students.
+
+  header:
+    home: Home
+    english: English
+    spanish: Spanish
+    edit: Edit Profile
+    logout: Logout
+    new: Register
+    login: Login
+    chat: Chat
+    profile: My Profile
+
+  error:
+    bad_request: The server cannot process the request.
+    forbidden: Forbidden access.
+    forbidden_descr: You tried to access a page for which you do not have access permissions.
+    internal_server: We're sorry, but something went wrong.
+    not_found: The page you were looking for doesn't exist.
+    not_found_descr: You may have bitten the address or the page may have moved.
+    unacceptable: Unacceptable.
+    unacceptable_descr: The server is not capable of returning the data in any of the formats accepted by the client.
+    unauthorized: Unauthorized access
+    unauthorized_descr: You tried to access a page for which you do not have access permissions, or you are not logged in.
+    unprocessable: The change you wanted was rejected.
+    unprocessable_descr: Maybe you tried to change something you didn't have access to.
+    if_owner: If you're the app owner, check the logs for more information.
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist
+  date:
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    abbr_month_names:
+      -
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    order:
+      - :year
+      - :month
+      - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+    prompts:
+      second: Second
+      minute: Minute
+      hour: Hour
+      day: Day
+      month: Month
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: "Validation failed: %{errors}"
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      other_than: must be other than %{count}
+      present: must be blank
+      required: must exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: "There were problems with the following fields:"
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ""
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ""
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ""
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm

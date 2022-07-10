@@ -1,0 +1,81 @@
+<!-- Se revisa si el usuario está logueado para mostrar todas las funcionalidades -->
+<% if current_user %>
+  <% my_publications = Publication.where(user_id: current_user.id).all %>
+  <h3><%= t('publication.my_travels') %></h3>
+  <% if my_publications.length == 0 %>
+    <article class="message is-warning">
+      <div class="message-body">
+        <%= t('nothing.publications') %>
+      </div>
+    </article>
+  <% else %>
+  <div class="table-container">
+  <table class = "table" align='center'>
+      <thead>
+      <tr>
+        <th><%= t('general.title') %></th>
+        <th><%= t('general.content') %></th>
+        <th><%= t('general.options') %></th>
+      </tr>
+      </thead>
+    <% my_publications.each do |publication| %>
+        <tr>
+          <td><%= publication.title %></td>
+          <td><%= publication.content %></td>
+        <td>
+          <%= link_to t('general.show'), publication_path(publication), class: "button is-info is-light m-1 is-small" %>
+          <%= link_to t('general.edit'), edit_publication_path(publication), class: "button is-warning is-light m-1 is-small" %>
+          <%= link_to t('general.delete'), publication, method: :delete, data: { confirm: t('publication.delete') }, class: "button is-danger is-light m-1 is-small" %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+  </div>
+  <% end %>
+
+<% my_accepted_requests = Request.where(user_id: current_user.id, status: "approved").all %>
+<h3><%= t('publication.my_requested_travels') %></h3>
+<% if my_accepted_requests.length == 0 %>
+  <article class="message is-warning">
+    <div class="message-body">
+      <%= t('nothing.publications') %>
+    </div>
+  </article>
+<% else %>
+  <div class="table-container">
+    <table class = "table" align='center'>
+      <thead>
+        <tr>
+          <th><%= t('general.publication') %></th>
+          <th><%= t('general.user') %></th>
+          <th><%= t('general.rate') %></th>
+        </tr>
+        </thead>
+        <% my_accepted_requests.each do |request|%>
+            <tr>
+              <td><%= link_to "#{request.publication.title}", publication_path(request.publication) %></td>
+              <td><%= link_to "#{request.publication.user.full_name}", user_path(request.publication.user) %></td>
+              <td>
+                <% already_reviewed = Review.find_by(user_id: current_user.id, publication_id: request.publication.id) %>
+                <% if ! already_reviewed %>
+                  <%= link_to t('general.rate'), new_publication_review_path(request.publication.id), class: "button is-light is-info is-small m-1" %>
+                <% else %>
+                  <button class="button m-1 is-small is-light is-info" disabled><%= t('general.rate_done') %></button>
+                <% end %>
+                <%= link_to t('publication.leave'), request, method: :delete, data: { confirm: t('publication.out_confirm')}, class: "button is-small m-1 is-light is-danger"%>
+              </td>
+            </tr>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+  <% end %>
+  <%= link_to "Crear Viajes", new_publication_path, class: "button is-light is-info is-small m-1" %>
+
+<!-- En otro caso, se muestra un mensaje que debe loguearse -->
+<% else %>
+
+  <h3><%= t('home.title') %></h3>
+  <p><%= t('publication.session') %></p>
+
+<% end %>

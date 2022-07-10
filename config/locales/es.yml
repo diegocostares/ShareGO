@@ -1,0 +1,357 @@
+# https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/es.yml
+es:
+
+  general:
+    ShareGO: ShareGO
+    title: Título
+    author: Autor
+    user: Usuario
+    users: 👥 Usuarios
+    content: Contenido
+    options: Opciones
+    travels: 📌 Viajes
+    publication: Publicación
+    show: Mostrar
+    edit: Editar
+    delete: Eliminar
+    create: Crear
+    cancel: Cancelar
+    campus: Campus
+    back: Volver
+    email: Correo
+    biography: Biografía
+    default_biography: Hola! Me encuentro en ShareGO
+    rate: Calificar
+    rate_done: Calificado
+    filter: Filtrar
+    all: Todos los campus
+    campus_select: Selecciona un campus
+    score: Calificación
+    points: GoCoins
+    status: Estado
+    name: Nombre
+    destroy_account: ¿Está seguro de eliminar su cuenta?
+    journey: Trayecto
+
+  home:
+    explore: Regístrate ahora
+    title: Bienvenido a ShareGO!
+    descr: Bienvenido a ShareGO, tu lugar para planificar tu viaje entre la universidad y tu hogar Aqui puedes buscar y ofrecer servicios para llevar en auto a tus compañeros al campus de forma completamente segura ¿Qué esperas para probarlo?
+
+  user:
+    something: a
+    points_info: Gana monedas cada vez que califiquen tus viajes o califiques alguno.
+
+  publication:
+    my_travels: 🚗 Mis viajes
+    create_travel: 📅 Crear viaje
+    new_travel: 📅 Nuevo viaje
+    edit: 📝 Editar publicación
+    delete: ¿Deseas eliminar esta publicación?
+    session: Debes iniciar sesión para ver las publicaciones.
+    day: Día
+    departure_time: Hora de Salida
+    seats_leaf: Asientos disponibles
+    request: Solicitar Viaje
+    all_travels: Ver todos los viajes
+    direction: Dirección
+    origin: 📌 Origen
+    destination: 📌 Destino
+    person_limit: Límite de personas
+    users_at: Usuarios en el viaje
+    my_requested_travels: 🚙 Viajes en los que participo
+    place_hint: "💡 Tip: Usa el autocompletar para rellenar nombres de campus."
+    time_hint: "💡 Tip: La hora se escribe en el formato 12:59 PM."
+    leave: Dejar el Viaje
+    out_confirm: ¿Está seguro de salir del viaje?
+
+  request:
+    my_publications: 📬 Solicitudes a mis publicaciones
+    my_own_requests: 📬 Mis solicitudes
+    show_requests: ✋ Ver solicitudes
+    send: Solicitud enviada
+    your_approve: Tu solicitud fue aceptada.
+    your_reject:  Tu solicitud fue rechazada.
+    pending: ⏰ Pendiente
+    pending_long: ⏰ Tu solicitud está pendiente de ser aprobada o rechazada por el usuario.
+    approve: Aprobar
+    approved: ✅ Aprobada
+    approved_long: ✅ Tu solicitud fue aprobada.
+    reject: Rechazar
+    rejected: ❌ Rechazada
+    rejected_long: ❌ Tu solicitud fue rechazada.
+    session: Debes iniciar sesión para ver tus solicitudes
+    cancel: Cancelar solicitud
+    cancel_info: ¿Estás seguro de que quieres cancelar tu solicitud?
+
+  chat:
+    my_chats: ✉️ Mis chats
+    send_message: Enviar mensaje
+    send: Enviar
+    chat_name: "Chat de %{@chat.publication.title}"
+    not_in: No estás en este chat.
+
+  admin:
+    travels: 📌 Viajes (modo de administración)
+    users_list: 👥 Lista de usuarios
+
+  nothing:
+    points: Tienes que poseer al menos 5 GoCoins para conseguir un emblema.
+    travels: No hay viajes en este momento
+    publications: No tienes ninguna publicación
+    requests: Todavía no has recibido solicitudes a tus publicaciones, prueba haciendo más atractiva la publicación 👊😔.
+    your_requests: Todavía no tienes ninguna solicitud. Puedes crear una desde cualquier publicación 🧐.
+    users: No hay ningún usuario por el momento
+    chats: No tienes ningún chat en este momento. Primero debes ser aceptado en un viaje o primero crear uno 🧐
+    score: Este usuario aún no tiene calificaciones
+
+  footer:
+    about_us: "Un proyecto de: "
+    university: Universidad
+    university_name: Pontificia Universidad Católica de Chile
+    love: Hecho con ❤️ por estudiantes, para estudiantes.
+
+  header:
+    home: Inicio
+    english: English
+    spanish: Español
+    edit: Editar Perfil
+    logout: Cerrar sesión
+    new: Regístrate
+    login: Iniciar sesión
+    chat: Mensajes
+    profile: Mi Perfil
+
+  error:
+    bad_request: El servidor no puede procesar la petición.
+    forbidden: Acceso prohibido.
+    forbidden_descr: Intentaste entrar a una página para la que no tienes permisos de acceso.
+    internal_server: Lo sentimos, pero algo salió mal.
+    not_found: La página que estabas buscando no existe.
+    not_found_descr: Es posible que haya mordido la dirección o la página puede haber movido.
+    unacceptable: Inaceptable.
+    unacceptable_descr: El servidor no es capaz de devolver los datos en ninguno de los formatos aceptados por el cliente.
+    unauthorized: Acceso no autorizado
+    unauthorized_descr: Intentaste entrar a una página para la que no tienes permisos de acceso, o bien no has iniciado sesión.
+    unprocessable: El cambio que querías fue rechazado.
+    unprocessable_descr: Tal vez trataste de cambiar algo a lo que no tuviste acceso.
+    if_owner: Si es el propietario de la aplicación, consulte los registros para obtener más información.
+
+  # ESTAS SON COSAS POR DEFECTO
+  registro activo:
+    errores:
+      mensajes:
+        record_invalid: 'La validación falló: %{errors}'
+        restringir_dependiente_destruir:
+          has_one: No se puede eliminar el registro porque existe un %{record} dependiente
+          has_many: No se puede eliminar el registro porque existen %{record} dependientes
+  fecha:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - competir
+    - sab
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - puede
+    - jun
+    - jul
+    - atrás
+    - sep
+    - oct
+    - nov
+    - dic
+    nombres_del_día:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formatos:
+      predeterminado: "%-d/%-m/%Y"
+      largo: "%-d de %B de %Y"
+      corto: "%-d de %b"
+    nombres_meses:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayonesa
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    pedido:
+    - :día
+    - :mes
+    - :año
+  fecha y hora:
+    distancia_en_palabras:
+      aproximadamente_x_horas:
+        uno: alrededor de 1 hora
+        otro: alrededor de %{count} horas
+      sobre_x_meses:
+        uno: alrededor de 1 mes
+        otro: alrededor de %{count} meses
+      sobre_x_años:
+        uno: alrededor de 1 año
+        otros: alrededor de %{count} años
+      casi_x_años:
+        uno: casi 1 año
+        otro: casi %{count} años
+      half_a_minute: medio minuto
+      menos_de_x_segundos:
+        uno: menos de 1 segundo
+        otro: menos de %{count} segundos
+      menos_de_x_minutos:
+        uno: menos de 1 minuto
+        otro: menos de %{count} minutos
+      over_x_years:
+        uno: más de 1 año
+        otros: más de %{count} años
+      x_segundos:
+        uno: 1 segundo
+        otro: "%{count} segundos"
+      x_minutos:
+        uno: 1 minuto
+        otro: "%{count} minutos"
+      x_días:
+        uno: 1 día
+        otro: "%{count} días"
+      x_meses:
+        uno: 1 mes
+        otro: "%{count} meses"
+      x_años:
+        uno: 1 año
+        otro: "%{count} años"
+    indicaciones:
+      segundo: Segundo
+      minuto: Minuto
+      hora: Hora
+      día: día
+      mes: Mes
+      año: año
+  errores:
+    formato: "%{atributo} %{mensaje}"
+    mensajes:
+      aceptado: debe ser aceptado
+      blank: no puede estar en blanco
+      confirmación: no coinciden
+      vacío: no puede estar vacío
+      equal_to: debe ser igual a %{count}
+      incluso: debe ser par
+      exclusión: está reservado
+      mayor_que: debe ser mayor que %{count}
+      great_than_or_equal_to: debe ser mayor que o igual a %{count}
+      inclusion: no esta incluido en la lista
+      inválido: no es válido
+      less_than: debe ser menor que %{count}
+      less_than_or_equal_to: debe ser menor que o igual a %{count}
+      model_invalid: 'La validación falló: %{errors}'
+      not_a_number: no es un número
+      not_an_integer: debe ser un entero
+      impar: debe ser impar
+      other_than: debe ser distinto de %{count}
+      presente: debe estar en blanco
+      requerido: debe existir
+      tomado: ya está en uso
+      demasiado largo:
+        one: demasiado largo (1 carácter máximo)
+        otro: es demasiado largo (%{count} caracteres máximo)
+      demasiado corto:
+        uno: demasiado corto (1 carácter mínimo)
+        otro: demasiado corto (%{count} caracteres mínimo)
+      longitud_equivocada:
+        one: no tiene la longitud correcta (1 carácter exacto)
+        otro: no tiene la longitud correcta (%{count} caracteres exactos)
+    modelo:
+      body: 'Se encontraron problemas con los siguientes campos:'
+      encabezamiento:
+        one: No se pudo guardar este/a %{model} porque se encontró 1 error
+        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+  ayudantes:
+    Seleccione:
+      aviso: Por favor seleccione
+    entregar:
+      crear: Crear %{modelo}
+      enviar: Guardar %{modelo}
+      actualización: Actualizar %{model}
+  número:
+    divisa:
+      formato:
+        delimitador: "."
+        formato: "%n %u"
+        precisión: 2
+        separador: ","
+        significativo: falso
+        strip_insignificant_zeros: falso
+        unidad: "€"
+    formato:
+      delimitador: "."
+      precisión: 3
+      separador: ","
+      significativo: falso
+      strip_insignificant_zeros: falso
+    humano:
+      unidades_decimales:
+        formato: "%n %u"
+        unidades:
+          billones: mil millones
+          millón:
+            uno: millón
+            otros: millones
+          cuatrillón: mil billones
+          mil: mil
+          billones:
+            uno: billón
+            otros: billones
+          unidad: ''
+      formato:
+        delimitador: ''
+        precisión: 3
+        significativo: cierto
+        strip_insignificant_zeros: verdadero
+      Unidades de almacenamiento:
+        formato: "%n %u"
+        unidades:
+          byte:
+            uno: byte
+            otro: bytes
+          EB: EB
+          GB: GB
+          KB: KB
+          MB: MB
+          pb: PB
+          tuberculosis: tuberculosis
+    porcentaje:
+      formato:
+        delimitador: ''
+        formato: "%n %"
+    precisión:
+      formato:
+        delimitador: ''
+  apoyo:
+    formación:
+      last_word_connector: " y "
+      conector_de_dos_palabras: "y"
+      palabras_conector: ", "
+  tiempo:
+    soy: soy
+    formatos:
+      por defecto: "%A, %-d de %B de %Y %H:%M:%S %z"
+      largo: "%-d de %B de %Y %H:%M"
+      corto: "%-d de %b %H:%M"
+    p.m.: p.m.

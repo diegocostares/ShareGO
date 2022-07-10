@@ -1,0 +1,50 @@
+<div>
+    <h2 class="chat_name">📬 <%= @chat.publication.title %></h2>
+</div>
+<% if @chat.publication.approved_users.include?(current_user) %>
+
+    <% if @chat.messages %>
+        <% @chat.messages.each do |message| %>
+            <% if message.user == current_user %>
+                <div class="message sag">
+                    <div class="messageText" data-time=<%= message.created_at.strftime("%H:%M")%> >
+            <% else %>
+                <div class="message sol">
+                    <div div class="messageText" data-time=<%= message.created_at.strftime("%H:%M") %> >
+            <% end %>
+                        <p><b><%= message.user.full_name %>:</b> <%= message.text %></p>
+                    </div>
+                </div>
+        <% end %>
+    <% end %>
+
+
+    <%# ! SCRIPT ACTUALIZACION TEMPORAL %>
+    <meta http-equiv="refresh" content="30" />
+    <script>
+    setTimeout(function(){ window.location.reload(1); }, 10000);
+    </script>
+
+    <%= form_with(model: Message.new, locale: true) do |f| %>
+        <div class="field has-addons">
+        <div class="control is-expanded">
+            <div class="control has-icons-left">
+                <%= f.text_field :text, class: "field input", minlength: "1", maxlength: "240" %>
+                <span class="icon is-small is-left">
+                    <i class="fa fa-keyboard-o"></i>
+                </span>
+            </div>
+        </div>
+        <div class="control"></div>
+            <%= f.hidden_field :publication_id, value: @chat.publication.id %>
+             <%= f.submit t('chat.send'), class: "button is-primary" %>
+        </div>
+        </div>
+
+
+    <% end %>
+<% else %>
+    <p><%= t('chat.not_in') %></p>
+<% end %>
+
+

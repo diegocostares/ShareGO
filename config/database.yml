@@ -1,0 +1,37 @@
+# Postgresql.Se admiten versiones 9.3 y hasta.
+#
+# Instale el controlador PG:
+#   gem install pg
+# On macOS with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On macOS with MacPorts:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure usando gemfile
+# gem 'pg'
+
+# the app. Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
+#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: SHAREGO_development
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
+test:
+  <<: *default
+  database: SHAREGO_test
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>

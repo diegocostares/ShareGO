@@ -1,0 +1,32 @@
+<br><br><br><br>
+    <section class="hero is-fillheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-centered">
+            <div class="column is-half is-offset">
+              <div class="box" action = "">
+                <div class="content">
+                    <h2><%= t('general.users') %></h2>
+                    <table class="table">
+                      <thead>
+                        <th><%= t('general.name') %></th>
+                        <th><%= t('general.email') %></th>
+                      </thead>
+                      <% @users.each do |user|%>
+                      <tr>
+                          <td><%= link_to "#{user.full_name}", user_path(user)%></td>
+                          <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+                      </tr>
+                      <% end %>
+                      </table>
+                    <br>
+                <%= link_to t('general.back'), :back %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+
+    <br><br><br><br><br>

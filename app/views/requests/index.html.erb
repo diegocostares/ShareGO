@@ -1,0 +1,103 @@
+<!-- Se revisa si el usuario está logueado para mostrar todas las funcionalidades -->
+<% if current_user %>
+  <h3><%= t('request.my_publications') %></h3>
+  <% my_publications = Publication.where(user_id: current_user.id).all %>
+  <% # Find requests to my publications %>
+  <% requests_to_me = [] %>
+  <% all_requests = Request.all %>
+  <% all_requests.each do |request| %>
+    <% if request.publication.user.id == current_user.id %>
+      <% requests_to_me << request %>
+    <% end %>
+  <% end %>
+  <% my_requests = Request.where(user_id: current_user.id).all %>
+
+  <% if requests_to_me.length == 0 %>
+  <article class="message is-warning">
+    <div class="message-body">
+      <%= t('nothing.requests') %>
+    </div>
+  </article>
+  <% else %>
+    <div class="table-container">
+      <table align='center' class='table is-fullwidth'>
+        <tr>
+          <thead>
+            <th><%= t('general.publication') %></th>
+            <th><%= t('general.user') %></th>
+            <th><%= t('general.status') %></th>
+          </thead>
+        </tr>
+        <% requests_to_me.each do |request| %>
+        <tr>
+            <td><%= link_to "#{request.publication.title}", publication_path(request.publication) %></td>
+            <td><%= link_to "#{request.user.full_name}", user_path(request.user) %></td>
+            <td>
+              <% if request.status == "pending" %>
+                <%= link_to "✅", approve_request_path(request.id), method: :patch, action: :approve, class: "button is-primary is-light" %>
+                <%= link_to "❌", reject_request_path(request.id), method: :patch, action: :reject, class: "button is-danger is-light" %>
+              <% elsif request.status == "approved" %>
+                <%= t('request.approved') %>
+              <% else %>
+                <%= t('request.rejected') %>
+              <% end %>
+            </td>
+            <% end %>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+  <h3><%= t('request.my_own_requests') %></h3>
+  <% if my_requests.length == 0 %>
+  <article class="message is-warning">
+    <div class="message-body">
+      <td><%= t('nothing.your_requests') %></td>
+    </div>
+  </article>
+  <% else %>
+    <div class="table-container">
+      <table align='center' class='table  is-fullwidth'>
+        <tr>
+            <thead>
+              <th><%= t('general.publication') %></th>
+              <th><%= t('general.user') %></th>
+              <th><%= t('general.status') %></th>
+              <th> <%= t('general.cancel') %></th>
+            </thead>
+          </tr>
+        <% my_requests.each do |request|%>
+            <tr>
+            <td><%= link_to "#{request.publication.title}", publication_path(request.publication) %></td>
+            <td><%= link_to "#{request.publication.user.full_name}", user_path(request.publication.user) %></td>
+            <% if request.status == "pending" %>
+              <td><%= t('request.pending') %></td>
+              <td><%= link_to "❌", request, method: :delete, data: { confirm: t('request.cancel_info')}, class: "button is-small m-1 is-light is-danger"%></td>
+            <% elsif request.status == "approved" %>
+              <td><%= t('request.approved') %></td>
+            <% else %>
+              <td><%= t('request.rejected') %></td>
+            <% end %>
+            </tr>
+        <% end %>
+        <% if my_requests.length == 0 %>
+        <article class="message is-warning">
+          <div class="message-body">
+            <%= t('nothing.your_requests') %>
+          </div>
+        </article>
+        <% end %>
+      </table>
+    </div>
+    <%= link_to t('publication.my_travels'), publications_path, class: "button is-light is-info" %>
+  <% end %>
+<!-- En otro caso, se muestra un mensaje que debe loguearse -->
+<% else %>
+
+  <h3><%= t('home.title') %></h3>
+  <article class="message is-warning">
+    <div class="message-body">
+      <p><%= t('request.session') %></p>
+    </div>
+  </article>
+
+<% end %>

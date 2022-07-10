@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Grupo 54">
+    <title>SHAREGO</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'errors', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+
+
+  </head>
+  <body>
+    <!-- CONTENIDO -->
+    <section class="hero is-fillheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-responsive is-centered">
+            <div class="column is-half is-offset">
+            <div align="center">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8deadeeb-4381-48db-a257-5e9819c6dfde/d7y0ydp-e8e6ec64-b0db-49e0-b150-c4267b349988.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzhkZWFkZWViLTQzODEtNDhkYi1hMjU3LTVlOTgxOWM2ZGZkZVwvZDd5MHlkcC1lOGU2ZWM2NC1iMGRiLTQ5ZTAtYjE1MC1jNDI2N2IzNDk5ODgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.bru0Y8qZTb4SKOSLNvqDfe-LmPCTOTOKxnJm-d5kqSk" width="200" height="200"/>
+            </div>
+            <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </body>
+</html>

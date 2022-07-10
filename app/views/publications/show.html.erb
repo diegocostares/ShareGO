@@ -1,0 +1,93 @@
+<h2><%= t('general.publication') %></h2>
+
+<div class="table-container">
+<table class = "table" align='center'>
+  <tr>
+    <thead>
+      <th><%= t('general.title') %></th>
+      <th><%= t('publication.day') %></th>
+    </thead>
+    <td><%= @publication.title %></td>
+    <td><%= @publication.day %></td>
+    <thead>
+      <th><%= t('publication.origin') %></th>
+      <th><%= t('publication.destination')%></th>
+    </thead>
+      <td><%= @publication.origin %></td>
+      <td><%= @publication.destination %></td>
+    <thead>
+      <th><%= t('publication.seats_leaf') %></th>
+      <th><%= t('publication.departure_time') %></th>
+    </thead>
+    <td><%= "#{@publication.seats_left}/#{@publication.person_limit}" %></td>
+    <td><%= @publication.departure_time %></td>
+    <thead>
+      <th><%= t('publication.users_at')%></th>
+      <th><%= t('publication.content') %></th>
+    </thead>
+    <% @users_approved = false %>
+    <td>
+    <ul>
+    <% @publication.approved_users.each do |user| %>
+      <% @users_approved = true %>
+        <li><%= link_to user.full_name, user_path(@publication.user) %></li>
+    <% end %>
+    </ul>
+    </td>
+    <% if !@users_approved%>
+      <td><%= t('nothing.users') %></td>
+    <% end %>
+    <td><%= @publication.content %></td>
+  </tr>
+</table>
+</div>
+
+<br>
+<% if @publication.user_id == current_user.id %>
+  <%= link_to t('general.edit'), edit_publication_path(@publication), class: "button is-small m-1 is-light is-warning" %>
+  <%= link_to t('general.delete'), @publication, method: :delete, data: { confirm: t('publication.delete')}, class: "button is-small m-1 is-light is-danger"%>
+<% else %>
+  <% existing_request = Request.find_by(user: current_user, publication: @publication)%>
+  <style>
+    form {
+      display: inline;
+    }
+  </style>
+  <% if !existing_request %>
+    <%= form_for(Request.create) do |f| %>
+      <%= f.hidden_field :publication_id, value: @publication.id %>
+
+      <%= f.submit t('publication.request'), class: "button is-small m-1 is-primary", style: "display: inline;" %>
+    <% end %>
+  <% else %>
+    <% if existing_request.status == "pending" %>
+    <article class="message is-primary">
+      <div class="message-body">
+        <p><%= t('request.pending_long') %></p>
+      </div>
+    </article>
+    <button style="display: inline" class="button is-small m-1 is-primary" disabled><%= t('request.send') %></button>
+    <%= link_to t('request.cancel'), existing_request, method: :delete, data: { confirm: t('request.cancel_info')}, class: "button is-small m-1 is-light is-danger"%>
+    <% elsif existing_request.status == "approved" %>
+    <article class="message is-success">
+      <div class="message-body">
+      <p><%= t("request.approved_long") %></p>
+      </div>
+    </article>
+      <button style="display: inline" class="button is-small m-1 is-info" disabled><%= t('request.approved') %></button>
+    <% else %>
+    <article class="message is-danger">
+      <div class="message-body">
+      <p><%= t('request.rejected_long') %></p>
+      </div>
+    </article>
+      <button style="display: inline" class="button is-small m-1 is-warning" disabled><%= t('request.rejected') %></button>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# from_to for creating a new request based on current user and publication %>
+
+<%# Hidden parameter of publication %>
+<%= link_to t('chat.send_message'), chat_path(@publication.chat), class: "button is-small m-1 is-light is-info" %>
+<%= link_to t('publication.all_travels'), '/home', class: "button is-small m-1 is-light is-link" %>

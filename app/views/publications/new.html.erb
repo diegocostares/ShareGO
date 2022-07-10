@@ -1,0 +1,35 @@
+<h2><%= t('publication.new_travel') %></h2>
+
+<%# Bulma Form for creating a Publication with title and content %>
+<%= form_with(model: @publication, locale: true) do |f| %>
+<%# <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%# <%= render "publications/error_messages", resource: resource %>
+
+  <%= f.label t('general.title'), class: "label" %>
+  <%= f.text_field :title, class: "field input", minlength: "5" %>
+  <br>
+  <%= f.label t('publication.day'), class: "label" %>
+  <%= f.date_field :day, class: "field input date calendar", type: "date", required: "date" %>
+  <br>
+  <%= f.label t('publication.departure_time'), class: "label" %>
+  <p><%= t('publication.time_hint') %></p>
+  <%= f.time_field :departure_time, class: "field input" %>
+  <br>
+  <%= f.label t('publication.person_limit'), class: "label" %>
+  <%= f.number_field :person_limit, class: "field input", value: "3", maxlength: "1", min:"1", max:"9", type:"number" %>
+  <br>
+  <!-- Origin and destinations are field with datalist campus -->
+  <%= f.label t('publication.origin'), class: "label" %>
+  <p><%= t('publication.place_hint') %></p>
+  <%= f.text_field :origin, class: "field input", list: "campus" %>
+
+  <%= f.label t('publication.destination'), class: "label" %>
+  <%= f.text_field :destination, class: "field input", list: "campus" %>
+  <br>
+
+  <br>
+  <%= f.label t('general.content'), class: "label" %>
+  <%= f.text_area :content, class: "field textarea", minlength: "10"  %>
+  <br>
+  <%= f.submit t('publication.create_travel'), class: "button is-primary" %>
+<% end %>

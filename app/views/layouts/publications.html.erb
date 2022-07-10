@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" class="has-navbar-fixed-top">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Grupo 54">
+    <title>SHAREGO</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+  <body>
+    <!-- HEADER -->
+    <%= render 'layouts/header' %>
+
+    <!-- CONTENIDO -->
+    <br><br><br>
+    <section class="hero is-fillheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-responsive is-centered">
+            <div class="column is-four-fifths is-offset">
+              <div class="box" action = "">
+                <div class="content">
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- FOOTER -->
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

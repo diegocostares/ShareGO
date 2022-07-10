@@ -1,0 +1,24 @@
+<% @my_chats = false %>
+<% if @chats %>
+  <p><%= t("chat.my_chats") %></p>
+  <br><br>
+  <% @chats.each do |chat| %>
+    <% if chat.publication.approved_users.include?(current_user) %>
+    <div class="box" action = "">
+      <article class="media is-centered">
+        <div class="media-content">
+          <% @my_chats = true %>
+          <tr><td><%= link_to "📌 #{chat.publication.title}", chat_path(chat) %></td></tr>
+        </div>
+      </article>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>
+<% if !@my_chats %>
+<article class="message is-warning">
+  <div class="message-body">
+    <%= t('nothing.chats') %>
+  </div>
+</article>
+<% end %>

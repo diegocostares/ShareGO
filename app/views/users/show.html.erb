@@ -1,0 +1,90 @@
+<br><br><br><br>
+    <section class="hero is-fillheight">
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-centered">
+            <div class="column is-half is-offset">
+              <div class="box" action = "">
+                <div class="content">
+                  <div class="table-container">
+                    <table align='center' class='table is-fullwidth'>
+                    <tr>
+                      <div class="navbar-container">
+                        <h2>👤 <%= @user.full_name %></h2>
+                        <% if @user == current_user %>
+                          <a class="navbar-item" href= <%= edit_user_registration_path%> >
+                            <span class="icon is-small mr-2"><i class="fa fa-gear"></i> </span>
+                            <span><%= t('header.edit') %></span>
+                          </a>
+                        <% end %>
+                      </div>
+                      <%= image_tag user_avatar(@user, 320), width: "140px"%>
+                      <thead>
+                        <th><%= t('general.biography') %></th>
+                      </thead>
+                      <% if @user.bio %>
+                        <td><%= @user.bio %></td>
+                      <% else %>
+                        <td><%= t('general.default_biography') %></td>
+                      <% end %>
+                      <thead>
+                        <th><%= t('general.email') %></th>
+                      </thead>
+                      <td><%= @user.email %></td>
+                      <% @score = 0 %>
+                      <% @n_reviews = 0 %>
+                      <% @reviews.each do |review| %>
+                        <% if review.publication.user == @user %>
+                          <% @n_reviews += 1%>
+                          <% @score += review.score %>
+                        <% end %>
+                      <% end %>
+                      <thead>
+                      <th><%= t('general.score') %></th>
+                      </thead>
+                      <% if @score > 0%>
+                        <td><%= "#{(@score/@n_reviews).round(2)}" %></td>
+                      <% else %>
+                        <td><%= t('nothing.score') %></td>
+                      <% end %>
+                      
+                      <!--div class="tooltip"-->
+                      <thead><th><%= t('general.points') %>: <%= @user.points %> </th></thead>
+                      <!--span class="tooltiptext"><%= t("user.points_info") %></span>
+                      </div-->
+                        
+                      </tr>
+                      <td>
+                      <% if @user.points < 5 %>
+                        <p> <%= t('nothing.points') %> </p>
+                      <%end%>
+                      <% if @user.points >=5 %>
+                        <%= image_tag("1bronce.png", :alt => "Bronce", :class => "gocoins", :width=>50 ) %>
+                      <%end%>
+                      <% if @user.points >=30 %>
+                        <%= image_tag("2plata.png", :alt => "Plata", :class => "gocoins", :width=>50 ) %>
+                      <%end%>
+                      <% if @user.points >=50 %>
+                        <%= image_tag("3oro.png", :alt => "Oro", :class => "gocoins", :width=>50 ) %>
+                      <%end%>
+                      <% if @user.points >=100 %>
+                        <%= image_tag("4diamante.png", :alt => "Plata", :class => "gocoins", :width=>50 ) %>
+                      <%end%>
+                      <% if @user.points >=200 %>
+                        <%= image_tag("5platino2.png", :alt => "Plata", :class => "gocoins", :width=>50 ) %>
+                      <%end%>
+                    </tr>
+                    </tr>
+                  </table>
+                  </div>
+
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+
+    <br><br><br><br><br>

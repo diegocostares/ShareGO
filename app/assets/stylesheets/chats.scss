@@ -1,0 +1,101 @@
+// Place all the styles related to the Chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.border {
+    border: 1px solid #000;
+}
+
+.chat_name {
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.message {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.message .messageText {
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.message.sol {
+    text-align: left;
+}
+
+.message.sag {
+    text-align: right;
+}
+
+.message .messageText {
+    background-color: rgb(153, 206, 103);
+    ;
+    vertical-align: text-top;
+    display: inline-block;
+    position: relative;
+    line-height: 20px;
+    max-width: 400px;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.message.left .userPortrait,
+.message.sag .messageText {
+    border-radius: 5px 0 0 5px;
+}
+
+.message.sag .userPortrait,
+.message.sol .messageText {
+    border-radius: 0 5px 5px 0;
+}
+
+.message .messageText:before {
+    border-color: transparent rgb(153, 206, 103);
+    border-style: solid;
+    position: absolute;
+    border-width: 0;
+    display: block;
+    content: "";
+    z-index: 1;
+}
+
+.message.sol .messageText:before {
+    border-width: 0 10px 10px 0;
+    left: -10px;
+    top: 0;
+}
+
+.message.sag .messageText:before {
+    border-width: 10px 0 0 10px;
+    right: -10px;
+    top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .message .messageText:after {
+        content: attr(data-time);
+        color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        line-height: 20px;
+        display: block;
+        bottom: 2px;
+        z-index: 1;
+    }
+}
+
+// @media screen and (max-width: 767px) {
+//     .message .messageText:after {}
+// }
+.message.sol .messageText:after {
+    margin-left: 5px;
+    left: 100%;
+}
+
+.message.sag .messageText:after {
+    margin-right: 5px;
+    right: 100%;
+}
